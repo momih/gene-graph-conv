@@ -36,7 +36,7 @@ task_ids = taskloader.get_all_tasks(tcga)
 # In[3]:
 
 
-tasks = [Task(tcga, task_id, limit=2) for task_id in task_ids]
+tasks = [Task(tcga, task_id, limit=1) for task_id in task_ids]
 
 print("Number of tasks", len(tasks))
 
@@ -152,7 +152,7 @@ for row in todo:
         experiment["auc"] = auc
         experiment["time_elapsed"] = str(time.time() - start_time)
         experiment["cuda"] = cuda
-        print(experiment)
+        # print(experiment)
         results = record_result(results, experiment, filename)
     except Exception as e:
         print(e)
@@ -162,19 +162,19 @@ for row in todo:
 # In[12]:
 
 
-results.groupby(["task", "model"]).mean()
+print(results.groupby(["task", "model"]).mean())
 
 
 # In[14]:
 
 
-(results.groupby(["model"]).mean(), results.groupby(["model"]).var())
+print(results.groupby(["model"]).mean(), results.groupby(["model"]).var())
 
 
 # In[19]:
 
 
-len(results.task.unique())
+print(len(results.task.unique()))
 
 
 # In[26]:
