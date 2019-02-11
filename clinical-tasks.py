@@ -82,6 +82,8 @@ models = [
 
 # In[11]:
 
+print("graph keys", graphs.keys())
+
 
 # Create the set of all experiment ids and see which are left to do
 columns = ["task", "graph", "model", "seed", "train_size"]
