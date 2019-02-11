@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import time
 import os
 import sys
@@ -35,10 +29,6 @@ from models.models import MLP, GCN, SLR
 get_ipython().run_line_magic('load_ext', 'autoreload')
 get_ipython().run_line_magic('autoreload', '2')
 
-
-# In[2]:
-
-
 tcga = TCGADataset()
 task_ids = taskloader.get_all_tasks(tcga)
 
@@ -46,7 +36,9 @@ task_ids = taskloader.get_all_tasks(tcga)
 # In[3]:
 
 
-tasks = [Task(tcga, task_id, limit=1000) for task_id in task_ids]
+tasks = [Task(tcga, task_id, limit=10) for task_id in task_ids]
+
+print("Number of tasks", tasks)
 
 
 # In[4]:
@@ -77,14 +69,14 @@ test_size = 200
 trials = 3
 cuda = False
 models = [
-              #GCN(name="GCN_lay20_chan32_emb32_dropout_pool_kmeans", cuda=cuda, dropout=True, num_layer=4, channels=32, embedding=32, prepool_extralayers=5, pooling="kmeans"),
-              GCN(name="GCN_lay20_chan32_emb32_dropout_pool_hierarchy", cuda=cuda, dropout=True, num_layer=4, channels=32, embedding=32, prepool_extralayers=5, pooling="hierarchy"),
-              #GCN(name="GCN_lay20_chan32_emb32_dropout_pool_random", cuda=cuda, dropout=True,num_layer=4, channels=32, embedding=32, prepool_extralayers=5, pooling="random"),
-              GCN(name="GCN_lay3_chan64_emb32_dropout_pool_hierarchy", cuda=cuda, dropout=True, num_layer=3, channels=64, embedding=32, pooling="hierarchy"),
+              # GCN(name="GCN_lay20_chan32_emb32_dropout_pool_kmeans", cuda=cuda, dropout=True, num_layer=4, channels=32, embedding=32, prepool_extralayers=5, pooling="kmeans"),
+              # GCN(name="GCN_lay20_chan32_emb32_dropout_pool_hierarchy", cuda=cuda, dropout=True, num_layer=4, channels=32, embedding=32, prepool_extralayers=5, pooling="hierarchy"),
+              # GCN(name="GCN_lay20_chan32_emb32_dropout_pool_random", cuda=cuda, dropout=True,num_layer=4, channels=32, embedding=32, prepool_extralayers=5, pooling="random"),
+              # GCN(name="GCN_lay3_chan64_emb32_dropout_pool_hierarchy", cuda=cuda, dropout=True, num_layer=3, channels=64, embedding=32, pooling="hierarchy"),
               GCN(name="GCN_lay3_chan64_emb32_dropout", cuda=cuda, dropout=True, num_layer=3, channels=64, embedding=32),
-              MLP(name="MLP_lay2_chan512_dropout", cuda=cuda, dropout=True, num_layer=2, channels=512),
-              MLP(name="MLP_lay2_chan512", cuda=cuda, dropout=False, num_layer=2, channels=512),
-              #SLR(name="SLR_lambda1_l11", cuda=cuda)
+              # MLP(name="MLP_lay2_chan512_dropout", cuda=cuda, dropout=True, num_layer=2, channels=512),
+              # MLP(name="MLP_lay2_chan512", cuda=cuda, dropout=False, num_layer=2, channels=512),
+              # SLR(name="SLR_lambda1_l11", cuda=cuda)
              ]
 
 
@@ -135,7 +127,7 @@ for row in todo:
     }
     print(experiment)
     try:
-        X_train, X_test, y_train, y_test = sklearn.model_selection.            train_test_split(task.get_data(), task.labels, stratify=task.labels, 
+        X_train, X_test, y_train, y_test = sklearn.model_selection.train_test_split(task.get_data(), task.labels, stratify=task.labels,
                              train_size=train_size, test_size=test_size)
     except ValueError as e:
         print(e)
