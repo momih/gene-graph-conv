@@ -163,62 +163,65 @@ for row in todo:
     
 
 
-# In[12]:
+print(results)
 
-
-print(results.groupby(["task", "model"]).mean())
-
-
-# In[14]:
-
-
-print(results.groupby(["model"]).mean(), results.groupby(["model"]).var())
-
-
-# In[19]:
-
-
-print(len(results.task.unique()))
-
-
-# In[26]:
-
-
-subset = results
-
-q = subset.groupby(['model'])['auc']
-print(q.mean())
-
-
-# In[36]:
-
-
-# get_ipython().run_line_magic('matplotlib', 'inline')
-plt.rcParams['figure.figsize'] = (7.5, 3.6)
-plot_train_size = 50
-
-subset = results
-
-q = subset.groupby(['model'])['auc']
-
-stderr = []
-mean = []
-labels = []
-for model in set(subset.model):
-    labels.append(model)
-    mean.append(q.mean()[model])
-    stderr.append(q.std()[model]/np.sqrt(q.count()[model]))
-
-freq_series = pd.Series.from_array(mean)
-
-plt.figure(figsize=(12, 8))
-fig = freq_series.plot(kind='bar')
-
-plt.bar(x=range(len(set(subset.model))), height=mean, yerr=stderr)
-fig.set_xticklabels(labels)
-plt.xticks(rotation=-80)
-
-fig.set_ylim((0.5, 0.9))
+#
+# # In[12]:
+#
+#
+# print(results.groupby(["task", "model"]).mean())
+#
+#
+# # In[14]:
+#
+#
+# print(results.groupby(["model"]).mean(), results.groupby(["model"]).var())
+#
+#
+# # In[19]:
+#
+#
+# print(len(results.task.unique()))
+#
+#
+# # In[26]:
+#
+#
+# subset = results
+#
+# q = subset.groupby(['model'])['auc']
+# print(q.mean())
+#
+#
+# # In[36]:
+#
+#
+# # get_ipython().run_line_magic('matplotlib', 'inline')
+# plt.rcParams['figure.figsize'] = (7.5, 3.6)
+# plot_train_size = 50
+#
+# subset = results
+#
+# q = subset.groupby(['model'])['auc']
+#
+# stderr = []
+# mean = []
+# labels = []
+# for model in set(subset.model):
+#     labels.append(model)
+#     mean.append(q.mean()[model])
+#     stderr.append(q.std()[model]/np.sqrt(q.count()[model]))
+#
+# freq_series = pd.Series.from_array(mean)
+#
+# plt.figure(figsize=(12, 8))
+# fig = freq_series.plot(kind='bar')
+#
+# plt.bar(x=range(len(set(subset.model))), height=mean, yerr=stderr)
+# fig.set_xticklabels(labels)
+# plt.xticks(rotation=-80)
+#
+# fig.set_ylim((0.5, 0.9))
 
 
 # In[ ]:
