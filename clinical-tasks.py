@@ -36,7 +36,7 @@ task_ids = taskloader.get_all_tasks(tcga)
 # In[3]:
 
 
-tasks = [Task(tcga, task_id, limit=10) for task_id in task_ids]
+tasks = [Task(tcga, task_id, limit=2) for task_id in task_ids]
 
 print("Number of tasks", tasks)
 
@@ -66,7 +66,7 @@ except Exception as e:
 
 train_size = 50
 test_size = 200
-trials = 3
+trials = 1
 cuda = False
 models = [
               # GCN(name="GCN_lay20_chan32_emb32_dropout_pool_kmeans", cuda=cuda, dropout=True, num_layer=4, channels=32, embedding=32, prepool_extralayers=5, pooling="kmeans"),
