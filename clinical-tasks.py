@@ -110,7 +110,7 @@ def get_every_n(a, n=2):
 
 for row in todo:
     start_time = time.time()
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
 #    if len(results) % 10 == 0:
     print(len(results))
     graph_name = row["graph"]
