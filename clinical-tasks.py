@@ -38,7 +38,7 @@ task_ids = taskloader.get_all_tasks(tcga)
 
 tasks = [Task(tcga, task_id, limit=2) for task_id in task_ids]
 
-print("Number of tasks", tasks)
+print("Number of tasks", len(tasks))
 
 
 # In[4]:
