@@ -159,7 +159,7 @@ for row in todo:
         # print(experiment)
         results = record_result(results, experiment, filename)
     except Exception as e:
-        print(e)
+        print("toto", e)
     
 
 
