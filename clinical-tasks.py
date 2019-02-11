@@ -156,10 +156,10 @@ for row in todo:
         experiment["auc"] = auc
         experiment["time_elapsed"] = str(time.time() - start_time)
         experiment["cuda"] = cuda
-        # print(experiment)
+        print("experiment", experiment)
         results = record_result(results, experiment, filename)
     except Exception as e:
-        print("toto", e)
+        print(e)
     
 
 
