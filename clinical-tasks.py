@@ -36,7 +36,9 @@ task_ids = taskloader.get_all_tasks(tcga)
 # In[3]:
 
 
-tasks = [Task(tcga, task_id, limit=1) for task_id in task_ids]
+tasks = [Task(tcga, task_id, limit=100) for task_id in task_ids]
+
+tasks = tasks[:10]
 
 print("Number of tasks", len(tasks))
 
@@ -73,7 +75,7 @@ models = [
               # GCN(name="GCN_lay20_chan32_emb32_dropout_pool_hierarchy", cuda=cuda, dropout=True, num_layer=4, channels=32, embedding=32, prepool_extralayers=5, pooling="hierarchy"),
               # GCN(name="GCN_lay20_chan32_emb32_dropout_pool_random", cuda=cuda, dropout=True,num_layer=4, channels=32, embedding=32, prepool_extralayers=5, pooling="random"),
               # GCN(name="GCN_lay3_chan64_emb32_dropout_pool_hierarchy", cuda=cuda, dropout=True, num_layer=3, channels=64, embedding=32, pooling="hierarchy"),
-              GCN(name="GCN_lay3_chan64_emb32_dropout", cuda=cuda, dropout=True, num_layer=3, channels=64, embedding=32),
+              GCN(name="GCN_lay3_chan64_emb32_dropout", cuda=cuda, dropout=True, num_layer=3, channels=64, embedding=32)
               # MLP(name="MLP_lay2_chan512_dropout", cuda=cuda, dropout=True, num_layer=2, channels=512),
               # MLP(name="MLP_lay2_chan512", cuda=cuda, dropout=False, num_layer=2, channels=512),
               # SLR(name="SLR_lambda1_l11", cuda=cuda)
@@ -82,7 +84,7 @@ models = [
 
 # In[11]:
 
-print("graph keys", graphs.keys())
+# print("graph keys", graphs.keys())
 
 
 # Create the set of all experiment ids and see which are left to do
