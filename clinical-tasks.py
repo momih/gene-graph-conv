@@ -189,7 +189,7 @@ print(q.mean())
 # In[36]:
 
 
-get_ipython().run_line_magic('matplotlib', 'inline')
+# get_ipython().run_line_magic('matplotlib', 'inline')
 plt.rcParams['figure.figsize'] = (7.5, 3.6)
 plot_train_size = 50
 
