@@ -296,3 +296,16 @@ class StringDBGraph(GeneInteractionGraph):
             self.nx_graph = nx.OrderedGraph(edgelist)
             nx.write_adjlist(self.nx_graph, savefile)
         print("Graph built !")
+
+class Frankenstein(GeneInteractionGraph):
+    def __init__(self, filename='frank.pkl', at_hash="5adbacb0b7ea663ac4a7758d39250a1bd28c5b40", datastore=""):
+        self.at_hash = at_hash
+        self.datastore = datastore
+        super(GeneManiaGraph, self).__init__()
+
+    def load_data(self):
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        self.location = os.path.join(dir_path, 'graphs/')
+        pkl_file = os.path.join(self.location, self.filename)
+        self.nx_graph = nx.OrderedGraph(nx.read_gpickle(pkl_file))
+

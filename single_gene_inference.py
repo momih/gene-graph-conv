@@ -12,7 +12,7 @@ import torch
 from models.mlp import MLP
 from data.datasets import TCGADataset, GTexDataset, GEODataset
 from data.gene_graphs import GeneManiaGraph, RegNetGraph,HumanNetV1Graph, HumanNetV2Graph, \
-    FunCoupGraph, HetIOGraph, StringDBGraph
+    FunCoupGraph, HetIOGraph, StringDBGraph, Frankenstein
 from data.utils import record_result
 from tqdm import tqdm
 
